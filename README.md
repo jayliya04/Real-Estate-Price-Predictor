@@ -1,6 +1,6 @@
 # Real Estate Price Predictor
 
-A Machine Learning web application that predicts real estate prices in Bangalore, India based on location, area, number of bedrooms (BHK), and bathrooms.
+A machine learning web application that predicts real estate prices in Bangalore, India based on location, area, number of bedrooms (BHK), and bathrooms.
 
 ## Features
 
