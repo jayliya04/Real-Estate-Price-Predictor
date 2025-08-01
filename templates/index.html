@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real Estate Price Predictor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Real Estate Price Prediction</h2>
+    <h2>(Bangalore)</h2>
+
+    <!-- Form that submits to /predict -->
+    <form method="post" action="/predict">
+        <!-- Location Dropdown -->
+        <label for="location">Location:</label>
+        <select name="location" required>
+            {% for loc in locations %}
+                <option value="{{ loc }}" {% if request.form.get('location') == loc %}selected{% endif %}>
+                    {{ loc.replace('location_', '').title() }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- Square Feet Input -->
+        <label for="sqft">Area (Square Feet):</label>
+        <input type="number" name="sqft" required value="{{ request.form.get('sqft', '') }}"><br><br>
+
+        <!-- BHK Input -->
+        <label for="bhk">BHK:</label>
+        <input type="number" name="bhk" required value="{{ request.form.get('bhk', '') }}"><br><br>
+
+        <!-- Bathroom Input -->
+        <label for="bath">Bathroom:</label>
+        <input type="number" name="bath" required value="{{ request.form.get('bath', '') }}"><br><br>
+
+        <!-- Buttons -->
+        <button type="submit">Predict Price</button>
+        <button type="button" onclick="window.location.href='/'">Reset</button>
+    </form>
+
+    <!-- Predicted Price -->
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
